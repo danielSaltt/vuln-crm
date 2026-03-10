@@ -1,0 +1,1 @@
+{"id":"integration-18","tenant_id":"tenant-09","provider":"Provider18","config_name":"default","endpoint_url":"https://api18.example.test","status":"connected","last_sync_at":"2026-04-01T00:00:00Z","metadata":"{\"sync\":\"hourly\"}"}

@@ -1,0 +1,1 @@
+{"id":"escalation-01","tenant_id":"tenant-02","source_type":"ticket","source_id":"ticket-02","assigned_to":"user-02","priority":"high","status":"open","metadata":"{\"sla\":\"P1\"}"}

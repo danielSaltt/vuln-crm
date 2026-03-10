@@ -1,0 +1,1 @@
+{"id":"playbook-06","tenant_id":"tenant-07","name":"Playbook 06","owner_id":"user-07","trigger_event":"deal.created","step_count":4,"status":"active","metadata":"{\"channel\":\"sales\"}"}

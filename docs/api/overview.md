@@ -21,3 +21,15 @@ Base path: `/api/v1`
 - Webhooks: `/webhooks/*`
 - Workflows: `/workflows/*`
 - Reports: `/reports/*`
+- Products: `/products/*`
+- Subscriptions: `/subscriptions/*`
+- Contracts: `/contracts/*`
+- Quotes: `/quotes/*`
+- Forecasts: `/forecasts/*`
+- Segments: `/segments/*`
+- Playbooks: `/playbooks/*`
+- Escalations: `/escalations/*`
+- Onboardings: `/onboardings/*`
+- Integrations: `/integrations/*`
+- Notifications: `/notifications/*`
+- Announcements: `/announcements/*`

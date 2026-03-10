@@ -1,0 +1,1 @@
+{"id":"notification-04","tenant_id":"tenant-05","channel":"email","recipient_id":"user-05","message":"Notification 04","severity":"info","status":"queued","metadata":"{\"template\":\"default\"}"}

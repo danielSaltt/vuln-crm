@@ -28,6 +28,7 @@ This repository contains an intentionally vulnerable TypeScript/Express CRM appl
 
 - Core CRM: tenants, users, contacts, accounts, deals, notes, files, api keys, audits, admin
 - Additional operations: tasks, tickets, campaigns, invoices, activities, webhooks, workflows, reports
+- Expansion suite: products, subscriptions, contracts, quotes, forecasts, segments, playbooks, escalations, onboardings, integrations, notifications, announcements
 
 ## Vulnerability Notes
 

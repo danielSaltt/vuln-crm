@@ -191,3 +191,146 @@ CREATE TABLE IF NOT EXISTS reports (
   metadata TEXT,
   created_at TIMESTAMP DEFAULT NOW()
 );
+
+CREATE TABLE IF NOT EXISTS products (
+  id TEXT PRIMARY KEY,
+  tenant_id TEXT NOT NULL,
+  sku TEXT,
+  name TEXT NOT NULL,
+  category TEXT,
+  unit_price NUMERIC,
+  status TEXT DEFAULT 'active',
+  metadata TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS subscriptions (
+  id TEXT PRIMARY KEY,
+  tenant_id TEXT NOT NULL,
+  account_id TEXT,
+  plan_name TEXT,
+  billing_cycle TEXT DEFAULT 'monthly',
+  status TEXT DEFAULT 'active',
+  renews_on TEXT,
+  metadata TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS contracts (
+  id TEXT PRIMARY KEY,
+  tenant_id TEXT NOT NULL,
+  account_id TEXT,
+  contract_name TEXT,
+  owner_id TEXT,
+  status TEXT DEFAULT 'draft',
+  expires_on TEXT,
+  metadata TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS quotes (
+  id TEXT PRIMARY KEY,
+  tenant_id TEXT NOT NULL,
+  account_id TEXT,
+  deal_id TEXT,
+  quote_number TEXT,
+  total_amount NUMERIC,
+  status TEXT DEFAULT 'created',
+  metadata TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS forecasts (
+  id TEXT PRIMARY KEY,
+  tenant_id TEXT NOT NULL,
+  period TEXT,
+  owner_id TEXT,
+  expected_revenue NUMERIC,
+  confidence INTEGER,
+  status TEXT DEFAULT 'open',
+  metadata TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS segments (
+  id TEXT PRIMARY KEY,
+  tenant_id TEXT NOT NULL,
+  segment_name TEXT,
+  criteria_json TEXT,
+  audience_size INTEGER,
+  status TEXT DEFAULT 'active',
+  metadata TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS playbooks (
+  id TEXT PRIMARY KEY,
+  tenant_id TEXT NOT NULL,
+  name TEXT,
+  owner_id TEXT,
+  trigger_event TEXT,
+  step_count INTEGER,
+  status TEXT DEFAULT 'active',
+  metadata TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS escalations (
+  id TEXT PRIMARY KEY,
+  tenant_id TEXT NOT NULL,
+  source_type TEXT,
+  source_id TEXT,
+  assigned_to TEXT,
+  priority TEXT DEFAULT 'medium',
+  status TEXT DEFAULT 'open',
+  metadata TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS onboardings (
+  id TEXT PRIMARY KEY,
+  tenant_id TEXT NOT NULL,
+  customer_name TEXT,
+  owner_id TEXT,
+  stage TEXT DEFAULT 'kickoff',
+  completion_pct INTEGER DEFAULT 0,
+  status TEXT DEFAULT 'active',
+  metadata TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS integrations (
+  id TEXT PRIMARY KEY,
+  tenant_id TEXT NOT NULL,
+  provider TEXT,
+  config_name TEXT,
+  endpoint_url TEXT,
+  status TEXT DEFAULT 'connected',
+  last_sync_at TEXT,
+  metadata TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS notifications (
+  id TEXT PRIMARY KEY,
+  tenant_id TEXT NOT NULL,
+  channel TEXT,
+  recipient_id TEXT,
+  message TEXT,
+  severity TEXT DEFAULT 'info',
+  status TEXT DEFAULT 'queued',
+  metadata TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS announcements (
+  id TEXT PRIMARY KEY,
+  tenant_id TEXT NOT NULL,
+  title TEXT,
+  body TEXT,
+  audience TEXT,
+  status TEXT DEFAULT 'published',
+  published_at TEXT,
+  metadata TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);

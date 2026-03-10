@@ -4,6 +4,8 @@ set -euo pipefail
 modules=(
   auth tenants users contacts accounts deals notes files apikeys audits admin
   tasks tickets campaigns invoices activities webhooks workflows reports
+  products subscriptions contracts quotes forecasts segments playbooks escalations
+  onboardings integrations notifications announcements
 )
 
 for m in "${modules[@]}"; do

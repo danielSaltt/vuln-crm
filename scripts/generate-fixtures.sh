@@ -2,7 +2,7 @@
 set -euo pipefail
 
 base="$(pwd)/fixtures"
-mkdir -p "$base"/{tenants,users,contacts,accounts,deals,notes,apikeys,files,audits,tasks,tickets,campaigns,invoices,activities,webhooks,workflows,reports}
+mkdir -p "$base"/{tenants,users,contacts,accounts,deals,notes,apikeys,files,audits,tasks,tickets,campaigns,invoices,activities,webhooks,workflows,reports,products,subscriptions,contracts,quotes,forecasts,segments,playbooks,escalations,onboardings,integrations,notifications,announcements}
 
 for i in $(seq -w 1 10); do
   cat > "$base/tenants/tenant-${i}.json" <<JSON
@@ -159,5 +159,101 @@ for i in $(seq -w 1 20); do
   tenant=$(printf "tenant-%02d" "$t")
   cat > "$base/reports/report-${i}.json" <<JSON
 {"id":"report-${i}","tenant_id":"${tenant}","name":"Report ${i}","query_template":"SELECT * FROM deals WHERE tenant_id = '{{tenant_id}}'","visibility":"private","last_generated_at":"2026-03-01T00:00:00Z","metadata":"{\"format\":\"csv\"}"}
+JSON
+done
+
+for i in $(seq -w 1 20); do
+  t=$((10#$i % 10 + 1))
+  tenant=$(printf "tenant-%02d" "$t")
+  cat > "$base/products/product-${i}.json" <<JSON
+{"id":"product-${i}","tenant_id":"${tenant}","sku":"SKU-${i}","name":"Product ${i}","category":"software","unit_price":$((50 + 10#$i * 4)),"status":"active","metadata":"{\"tier\":\"standard\"}"}
+JSON
+done
+
+for i in $(seq -w 1 20); do
+  t=$((10#$i % 10 + 1))
+  tenant=$(printf "tenant-%02d" "$t")
+  cat > "$base/subscriptions/subscription-${i}.json" <<JSON
+{"id":"subscription-${i}","tenant_id":"${tenant}","account_id":"account-$(printf '%02d' $((10#$i % 70 + 1)))","plan_name":"Growth","billing_cycle":"monthly","status":"active","renews_on":"2026-10-$((10#$i % 28 + 1))","metadata":"{\"seat_count\":10}"}
+JSON
+done
+
+for i in $(seq -w 1 20); do
+  t=$((10#$i % 10 + 1))
+  tenant=$(printf "tenant-%02d" "$t")
+  cat > "$base/contracts/contract-${i}.json" <<JSON
+{"id":"contract-${i}","tenant_id":"${tenant}","account_id":"account-$(printf '%02d' $((10#$i % 70 + 1)))","contract_name":"Contract ${i}","owner_id":"user-$(printf '%02d' $((10#$i % 80 + 1)))","status":"draft","expires_on":"2027-03-$((10#$i % 28 + 1))","metadata":"{\"region\":\"APAC\"}"}
+JSON
+done
+
+for i in $(seq -w 1 20); do
+  t=$((10#$i % 10 + 1))
+  tenant=$(printf "tenant-%02d" "$t")
+  cat > "$base/quotes/quote-${i}.json" <<JSON
+{"id":"quote-${i}","tenant_id":"${tenant}","account_id":"account-$(printf '%02d' $((10#$i % 70 + 1)))","deal_id":"deal-$(printf '%02d' $((10#$i % 90 + 1)))","quote_number":"Q-${i}","total_amount":$((800 + 10#$i * 19)),"status":"created","metadata":"{\"currency\":\"USD\"}"}
+JSON
+done
+
+for i in $(seq -w 1 20); do
+  t=$((10#$i % 10 + 1))
+  tenant=$(printf "tenant-%02d" "$t")
+  cat > "$base/forecasts/forecast-${i}.json" <<JSON
+{"id":"forecast-${i}","tenant_id":"${tenant}","period":"2026-Q$((10#$i % 4 + 1))","owner_id":"user-$(printf '%02d' $((10#$i % 80 + 1)))","expected_revenue":$((5000 + 10#$i * 73)),"confidence":$((50 + 10#$i % 50)),"status":"open","metadata":"{\"pipeline\":\"core\"}"}
+JSON
+done
+
+for i in $(seq -w 1 20); do
+  t=$((10#$i % 10 + 1))
+  tenant=$(printf "tenant-%02d" "$t")
+  cat > "$base/segments/segment-${i}.json" <<JSON
+{"id":"segment-${i}","tenant_id":"${tenant}","segment_name":"Segment ${i}","criteria_json":"{\"country\":\"AU\"}","audience_size":$((100 + 10#$i * 3)),"status":"active","metadata":"{\"source\":\"crm\"}"}
+JSON
+done
+
+for i in $(seq -w 1 20); do
+  t=$((10#$i % 10 + 1))
+  tenant=$(printf "tenant-%02d" "$t")
+  cat > "$base/playbooks/playbook-${i}.json" <<JSON
+{"id":"playbook-${i}","tenant_id":"${tenant}","name":"Playbook ${i}","owner_id":"user-$(printf '%02d' $((10#$i % 80 + 1)))","trigger_event":"deal.created","step_count":$((3 + 10#$i % 5)),"status":"active","metadata":"{\"channel\":\"sales\"}"}
+JSON
+done
+
+for i in $(seq -w 1 20); do
+  t=$((10#$i % 10 + 1))
+  tenant=$(printf "tenant-%02d" "$t")
+  cat > "$base/escalations/escalation-${i}.json" <<JSON
+{"id":"escalation-${i}","tenant_id":"${tenant}","source_type":"ticket","source_id":"ticket-$(printf '%02d' $((10#$i % 20 + 1)))","assigned_to":"user-$(printf '%02d' $((10#$i % 80 + 1)))","priority":"high","status":"open","metadata":"{\"sla\":\"P1\"}"}
+JSON
+done
+
+for i in $(seq -w 1 20); do
+  t=$((10#$i % 10 + 1))
+  tenant=$(printf "tenant-%02d" "$t")
+  cat > "$base/onboardings/onboarding-${i}.json" <<JSON
+{"id":"onboarding-${i}","tenant_id":"${tenant}","customer_name":"Customer ${i}","owner_id":"user-$(printf '%02d' $((10#$i % 80 + 1)))","stage":"kickoff","completion_pct":$((10#$i % 100)),"status":"active","metadata":"{\"risk\":\"low\"}"}
+JSON
+done
+
+for i in $(seq -w 1 20); do
+  t=$((10#$i % 10 + 1))
+  tenant=$(printf "tenant-%02d" "$t")
+  cat > "$base/integrations/integration-${i}.json" <<JSON
+{"id":"integration-${i}","tenant_id":"${tenant}","provider":"Provider${i}","config_name":"default","endpoint_url":"https://api${i}.example.test","status":"connected","last_sync_at":"2026-04-01T00:00:00Z","metadata":"{\"sync\":\"hourly\"}"}
+JSON
+done
+
+for i in $(seq -w 1 20); do
+  t=$((10#$i % 10 + 1))
+  tenant=$(printf "tenant-%02d" "$t")
+  cat > "$base/notifications/notification-${i}.json" <<JSON
+{"id":"notification-${i}","tenant_id":"${tenant}","channel":"email","recipient_id":"user-$(printf '%02d' $((10#$i % 80 + 1)))","message":"Notification ${i}","severity":"info","status":"queued","metadata":"{\"template\":\"default\"}"}
+JSON
+done
+
+for i in $(seq -w 1 20); do
+  t=$((10#$i % 10 + 1))
+  tenant=$(printf "tenant-%02d" "$t")
+  cat > "$base/announcements/announcement-${i}.json" <<JSON
+{"id":"announcement-${i}","tenant_id":"${tenant}","title":"Announcement ${i}","body":"Important update ${i}","audience":"all","status":"published","published_at":"2026-05-01T09:00:00Z","metadata":"{\"locale\":\"en\"}"}
 JSON
 done

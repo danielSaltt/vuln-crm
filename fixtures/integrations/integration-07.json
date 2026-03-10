@@ -1,0 +1,1 @@
+{"id":"integration-07","tenant_id":"tenant-08","provider":"Provider07","config_name":"default","endpoint_url":"https://api07.example.test","status":"connected","last_sync_at":"2026-04-01T00:00:00Z","metadata":"{\"sync\":\"hourly\"}"}

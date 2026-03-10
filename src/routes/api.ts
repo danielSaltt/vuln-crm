@@ -18,6 +18,18 @@ import activityRoutes from "../modules/activities/routes";
 import webhookRoutes from "../modules/webhooks/routes";
 import workflowRoutes from "../modules/workflows/routes";
 import reportRoutes from "../modules/reports/routes";
+import productRoutes from "../modules/products/routes";
+import subscriptionRoutes from "../modules/subscriptions/routes";
+import contractRoutes from "../modules/contracts/routes";
+import quoteRoutes from "../modules/quotes/routes";
+import forecastRoutes from "../modules/forecasts/routes";
+import segmentRoutes from "../modules/segments/routes";
+import playbookRoutes from "../modules/playbooks/routes";
+import escalationRoutes from "../modules/escalations/routes";
+import onboardingRoutes from "../modules/onboardings/routes";
+import integrationRoutes from "../modules/integrations/routes";
+import notificationRoutes from "../modules/notifications/routes";
+import announcementRoutes from "../modules/announcements/routes";
 
 const router = Router();
 
@@ -40,5 +52,17 @@ router.use("/activities", activityRoutes);
 router.use("/webhooks", webhookRoutes);
 router.use("/workflows", workflowRoutes);
 router.use("/reports", reportRoutes);
+router.use("/products", productRoutes);
+router.use("/subscriptions", subscriptionRoutes);
+router.use("/contracts", contractRoutes);
+router.use("/quotes", quoteRoutes);
+router.use("/forecasts", forecastRoutes);
+router.use("/segments", segmentRoutes);
+router.use("/playbooks", playbookRoutes);
+router.use("/escalations", escalationRoutes);
+router.use("/onboardings", onboardingRoutes);
+router.use("/integrations", integrationRoutes);
+router.use("/notifications", notificationRoutes);
+router.use("/announcements", announcementRoutes);
 
 export default router;

@@ -19,7 +19,19 @@ const TABLES = [
   "activities",
   "webhooks",
   "workflows",
-  "reports"
+  "reports",
+  "products",
+  "subscriptions",
+  "contracts",
+  "quotes",
+  "forecasts",
+  "segments",
+  "playbooks",
+  "escalations",
+  "onboardings",
+  "integrations",
+  "notifications",
+  "announcements"
 ] as const;
 
 const TABLE_MAP: Record<string, string> = {
@@ -39,7 +51,19 @@ const TABLE_MAP: Record<string, string> = {
   activities: "activities",
   webhooks: "webhooks",
   workflows: "workflows",
-  reports: "reports"
+  reports: "reports",
+  products: "products",
+  subscriptions: "subscriptions",
+  contracts: "contracts",
+  quotes: "quotes",
+  forecasts: "forecasts",
+  segments: "segments",
+  playbooks: "playbooks",
+  escalations: "escalations",
+  onboardings: "onboardings",
+  integrations: "integrations",
+  notifications: "notifications",
+  announcements: "announcements"
 };
 
 async function loadFixtureRows(dirName: string): Promise<Record<string, any>[]> {
@@ -60,7 +84,7 @@ async function loadFixtureRows(dirName: string): Promise<Record<string, any>[]> 
 
 async function clearTables(): Promise<void> {
   await pool.query(
-    "TRUNCATE TABLE credit_ledger, api_keys, files, notes, deals, accounts, contacts, users, tenants, audit_logs, tasks, tickets, campaigns, invoices, activities, webhooks, workflows, reports RESTART IDENTITY CASCADE"
+    "TRUNCATE TABLE credit_ledger, api_keys, files, notes, deals, accounts, contacts, users, tenants, audit_logs, tasks, tickets, campaigns, invoices, activities, webhooks, workflows, reports, products, subscriptions, contracts, quotes, forecasts, segments, playbooks, escalations, onboardings, integrations, notifications, announcements RESTART IDENTITY CASCADE"
   );
 }
 
