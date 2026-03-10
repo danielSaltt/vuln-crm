@@ -12,6 +12,14 @@ declare global {
 
 const sessions = new Map<string, SessionContext>();
 
+function inferSecureCookie(req: Request): boolean {
+  if (req.secure) {
+    return true;
+  }
+  const forwardedProto = req.header("x-forwarded-proto");
+  return forwardedProto === "https";
+}
+
 export function sessionMiddleware(req: Request, res: Response, next: NextFunction): void {
   const sid = req.cookies.sid || uuid();
   const existing: SessionContext = sessions.get(sid) || { sid };
@@ -27,10 +35,11 @@ export function sessionMiddleware(req: Request, res: Response, next: NextFunctio
   req.sessionCtx = existing;
   sessions.set(sid, existing);
 
+  const secureCookie = inferSecureCookie(req);
   res.cookie("sid", sid, {
     httpOnly: false,
-    secure: false,
-    sameSite: "none"
+    secure: secureCookie,
+    sameSite: secureCookie ? "none" : "lax"
   });
   next();
 }
