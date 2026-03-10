@@ -1,0 +1,1 @@
+{"id":"invoice-20","tenant_id":"tenant-01","account_id":"account-21","reference":"INV-20","amount":800,"currency":"USD","status":"pending","due_date":"2026-11-21","metadata":"{\"source\":\"billing\"}"}

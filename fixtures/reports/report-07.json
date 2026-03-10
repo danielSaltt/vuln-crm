@@ -1,0 +1,1 @@
+{"id":"report-07","tenant_id":"tenant-08","name":"Report 07","query_template":"SELECT * FROM deals WHERE tenant_id = '{{tenant_id}}'","visibility":"private","last_generated_at":"2026-03-01T00:00:00Z","metadata":"{\"format\":\"csv\"}"}

@@ -1,0 +1,50 @@
+{
+  "name": "aikido-vuln-crm",
+  "version": "1.0.0",
+  "description": "Intentionally vulnerable SaaS CRM PoC for Aikido pentest validation",
+  "private": true,
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "lint": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:smoke": "vitest run tests/smoke",
+    "seed": "tsx scripts/seed.ts",
+    "fixtures:check": "tsx scripts/check-fixtures.ts"
+  },
+  "keywords": [
+    "aikido",
+    "security",
+    "pentest",
+    "intentionally-vulnerable"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "multer": "^2.0.2",
+    "pg": "^8.16.3",
+    "redis": "^5.9.0",
+    "uuid": "^13.0.0",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
+    "@types/ejs": "^3.1.5",
+    "@types/express": "^5.0.5",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^24.7.2",
+    "@types/supertest": "^6.0.3",
+    "@types/uuid": "^10.0.0",
+    "supertest": "^7.1.4",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

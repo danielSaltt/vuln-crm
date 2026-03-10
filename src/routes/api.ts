@@ -1,0 +1,44 @@
+import { Router } from "express";
+import authRoutes from "../modules/auth/routes";
+import tenantRoutes from "../modules/tenants/routes";
+import userRoutes from "../modules/users/routes";
+import contactRoutes from "../modules/contacts/routes";
+import accountRoutes from "../modules/accounts/routes";
+import dealRoutes from "../modules/deals/routes";
+import noteRoutes from "../modules/notes/routes";
+import fileRoutes from "../modules/files/routes";
+import apiKeyRoutes from "../modules/apikeys/routes";
+import auditRoutes from "../modules/audits/routes";
+import adminRoutes from "../modules/admin/routes";
+import taskRoutes from "../modules/tasks/routes";
+import ticketRoutes from "../modules/tickets/routes";
+import campaignRoutes from "../modules/campaigns/routes";
+import invoiceRoutes from "../modules/invoices/routes";
+import activityRoutes from "../modules/activities/routes";
+import webhookRoutes from "../modules/webhooks/routes";
+import workflowRoutes from "../modules/workflows/routes";
+import reportRoutes from "../modules/reports/routes";
+
+const router = Router();
+
+router.use("/auth", authRoutes);
+router.use("/tenants", tenantRoutes);
+router.use("/users", userRoutes);
+router.use("/contacts", contactRoutes);
+router.use("/accounts", accountRoutes);
+router.use("/deals", dealRoutes);
+router.use("/notes", noteRoutes);
+router.use("/files", fileRoutes);
+router.use("/apikeys", apiKeyRoutes);
+router.use("/audits", auditRoutes);
+router.use("/admin", adminRoutes);
+router.use("/tasks", taskRoutes);
+router.use("/tickets", ticketRoutes);
+router.use("/campaigns", campaignRoutes);
+router.use("/invoices", invoiceRoutes);
+router.use("/activities", activityRoutes);
+router.use("/webhooks", webhookRoutes);
+router.use("/workflows", workflowRoutes);
+router.use("/reports", reportRoutes);
+
+export default router;

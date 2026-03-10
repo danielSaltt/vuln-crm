@@ -1,0 +1,14 @@
+<%- include('../partials/head', { title: title || 'Login' }) %>
+<main class="container">
+  <h1>Vuln CRM Login</h1>
+  <% if (error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+  <form id="loginForm">
+    <label>Username <input name="username" value="viewer1" /></label>
+    <label>Password <input type="password" name="password" value="Password123!" /></label>
+    <button type="submit">Sign in</button>
+  </form>
+  <p><a href="/api/v1/tenants">Public tenant directory</a></p>
+</main>
+<%- include('../partials/footer') %>

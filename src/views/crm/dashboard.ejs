@@ -1,0 +1,22 @@
+<%- include('../partials/head', { title: title || 'Dashboard' }) %>
+<main class="container">
+  <h1>Welcome <%= user.username %></h1>
+  <p>Role: <%= user.role %> | Tenant: <%= user.tenantId %></p>
+  <p>Search term: <%- searchTerm %></p>
+  <section>
+    <h2>Latest Notes</h2>
+    <ul>
+      <% for (const note of notes) { %>
+        <li>
+          <strong><%= note.entity_type %>:</strong>
+          <%- note.body %>
+        </li>
+      <% } %>
+    </ul>
+  </section>
+  <section>
+    <h2>Preferences</h2>
+    <pre><%- JSON.stringify(prefs, null, 2) %></pre>
+  </section>
+</main>
+<%- include('../partials/footer') %>

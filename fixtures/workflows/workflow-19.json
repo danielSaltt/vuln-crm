@@ -1,0 +1,1 @@
+{"id":"workflow-19","tenant_id":"tenant-10","name":"Workflow 19","trigger_event":"contact.created","definition_json":"{\"steps\":[\"assign_owner\",\"create_task\"]}","is_enabled":true,"metadata":"{\"version\":1}"}

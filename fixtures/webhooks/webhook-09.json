@@ -1,0 +1,1 @@
+{"id":"webhook-09","tenant_id":"tenant-10","event_name":"deal.won","target_url":"https://hooks09.example.test/receive","secret":"whsec_09","is_active":true,"metadata":"{\"retry\":3}"}
