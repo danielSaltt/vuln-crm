@@ -1,0 +1,101 @@
+<%- include('../partials/head', { title: title || 'Lab Console' }) %>
+<main class="container">
+  <h1>Lab Console</h1>
+  <p>Signed in as <strong><%= user.username %></strong> (<%= user.role %>, tenant <%= user.tenantId %>)</p>
+
+  <nav class="quick-nav">
+    <a class="quick-link" href="/dashboard">Back to Dashboard</a>
+    <a class="quick-link" href="/health" target="_blank" rel="noreferrer">Health</a>
+    <a class="quick-link" href="/api/v1/tenants" target="_blank" rel="noreferrer">Tenants API</a>
+  </nav>
+
+  <section class="panel">
+    <h2>Resource Explorer</h2>
+    <p>These buttons call common API endpoints directly and print responses below.</p>
+    <div class="button-grid">
+      <button class="run-btn" data-method="GET" data-path="/api/v1/contacts">List Contacts</button>
+      <button class="run-btn" data-method="GET" data-path="/api/v1/accounts">List Accounts</button>
+      <button class="run-btn" data-method="GET" data-path="/api/v1/deals">List Deals</button>
+      <button class="run-btn" data-method="GET" data-path="/api/v1/notes">List Notes</button>
+      <button class="run-btn" data-method="GET" data-path="/api/v1/files">List Files</button>
+      <button class="run-btn" data-method="GET" data-path="/api/v1/users">List Users</button>
+      <button class="run-btn" data-method="GET" data-path="/api/v1/tasks">List Tasks</button>
+      <button class="run-btn" data-method="GET" data-path="/api/v1/tickets">List Tickets</button>
+      <button class="run-btn" data-method="GET" data-path="/api/v1/campaigns">List Campaigns</button>
+      <button class="run-btn" data-method="GET" data-path="/api/v1/invoices">List Invoices</button>
+      <button class="run-btn" data-method="GET" data-path="/api/v1/activities">List Activities</button>
+      <button class="run-btn" data-method="GET" data-path="/api/v1/webhooks">List Webhooks</button>
+      <button class="run-btn" data-method="GET" data-path="/api/v1/workflows">List Workflows</button>
+      <button class="run-btn" data-method="GET" data-path="/api/v1/reports">List Reports</button>
+      <button class="run-btn" data-method="GET" data-path="/api/v1/audits">List Audits</button>
+      <button class="run-btn" data-method="GET" data-path="/api/v1/admin">List Admin Users</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Finding Access Controls</h2>
+    <p>Each action maps to one finding in <code>docs/VULNERABILITIES.md</code>.</p>
+
+    <div class="form-grid">
+      <label>Contact ID <input id="contactId" value="contact-01" /></label>
+      <label>Deal ID <input id="dealId" value="deal-01" /></label>
+      <label>User ID <input id="userId" value="user-seed-viewer" /></label>
+      <label>Search Term <input id="searchTerm" value="test" /></label>
+      <label>Reset Username <input id="resetUser" value="viewer1" /></label>
+      <label>Redirect Target <input id="redirectTarget" value="https://example.com" /></label>
+      <label>Webhook URL <input id="webhookUrl" value="http://example.com" /></label>
+      <label>Diagnostics Host <input id="diagHost" value="127.0.0.1" /></label>
+      <label>Override Role Header <input id="overrideRole" value="admin" /></label>
+      <label>Override Tenant Header <input id="overrideTenant" value="tenant-01" /></label>
+      <label>Upload Filename <input id="uploadFilename" value="sample.html" /></label>
+      <label>Prefs Cookie Value <input id="prefsRaw" value="({ theme: 'lab', section: 'dashboard' })" /></label>
+    </div>
+
+    <div class="button-grid">
+      <button class="check-btn" data-check="v1">VULN-001: Contact Search Query</button>
+      <button class="check-btn" data-check="v2">VULN-002: Create Note Content</button>
+      <button class="check-btn" data-check="v3">VULN-003: Open Dashboard Query</button>
+      <button class="check-btn" data-check="v4">VULN-004: Read Contact by ID</button>
+      <button class="check-btn" data-check="v5">VULN-005: Create Contact with Ownership Fields</button>
+      <button class="check-btn" data-check="v6">VULN-006: Role Route with Query Override</button>
+      <button class="check-btn" data-check="v7">VULN-007: Set User Role</button>
+      <button class="check-btn" data-check="v8">VULN-008: Request Password Reset</button>
+      <button class="check-btn" data-check="v9">VULN-009: Header Context Override Check</button>
+      <button class="check-btn" data-check="v10">VULN-010: POST Without CSRF Token</button>
+      <button class="check-btn" data-check="v11">VULN-011: Redirect Target Check</button>
+      <button class="check-btn" data-check="v12">VULN-012: Set Prefs Cookie + Dashboard</button>
+      <button class="check-btn" data-check="v13">VULN-013: Upload File</button>
+      <button class="check-btn" data-check="v14">VULN-014: Webhook Target Fetch</button>
+      <button class="check-btn" data-check="v15">VULN-015: Diagnostics Command Path</button>
+      <button class="check-btn" data-check="v16">VULN-016: Debug Secrets Response</button>
+      <button class="check-btn" data-check="v17">VULN-017: Burst Requests</button>
+      <button class="check-btn" data-check="v18">VULN-018: Concurrent Deal Promote</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Custom API Runner</h2>
+    <div class="form-grid">
+      <label>
+        Method
+        <select id="customMethod">
+          <option>GET</option>
+          <option>POST</option>
+          <option>PUT</option>
+          <option>DELETE</option>
+        </select>
+      </label>
+      <label>Path <input id="customPath" value="/api/v1/contacts" /></label>
+      <label>Headers JSON <textarea id="customHeaders">{}</textarea></label>
+      <label>Body JSON <textarea id="customBody">{}</textarea></label>
+    </div>
+    <button id="runCustom" class="run-btn">Run Custom Request</button>
+  </section>
+
+  <section class="panel">
+    <h2>Response Output</h2>
+    <pre id="labsOutput">Ready.</pre>
+  </section>
+</main>
+<script src="/static/js/labs.js"></script>
+<%- include('../partials/footer') %>

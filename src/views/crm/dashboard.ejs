@@ -2,6 +2,13 @@
 <main class="container">
   <h1>Welcome <%= user.username %></h1>
   <p>Role: <%= user.role %> | Tenant: <%= user.tenantId %></p>
+  <nav class="quick-nav">
+    <a class="quick-link" href="/labs">Open Lab Console</a>
+    <a class="quick-link" href="/api/v1/contacts" target="_blank" rel="noreferrer">Contacts API</a>
+    <a class="quick-link" href="/api/v1/deals" target="_blank" rel="noreferrer">Deals API</a>
+    <a class="quick-link" href="/api/v1/notes" target="_blank" rel="noreferrer">Notes API</a>
+    <a class="quick-link" href="/api/v1/admin/debug/secrets" target="_blank" rel="noreferrer">Admin Debug API</a>
+  </nav>
   <p>Search term: <%- searchTerm %></p>
   <section>
     <h2>Latest Notes</h2>

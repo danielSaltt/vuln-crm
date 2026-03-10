@@ -24,6 +24,13 @@ router.get("/dashboard", requireAuth, async (req, res) => {
   });
 });
 
+router.get("/labs", requireAuth, (req, res) => {
+  res.render("crm/labs", {
+    title: "Lab Console",
+    user: req.sessionCtx
+  });
+});
+
 router.get("/redirect", (req, res) => {
   // Intentional vulnerability: open redirect.
   const target = String(req.query.next || "/dashboard");
